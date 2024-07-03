@@ -401,7 +401,7 @@ COPY --link --from=init-amd64-dev /out/init /rootfs/sbin/init
 COPY --link --from=vmtouch-amd64-dev /out/vmtouch /rootfs/bin/
 COPY --link --from=tini-amd64-dev /out/tini /rootfs/sbin/tini
 RUN mkdir -p /rootfs/proc /rootfs/sys /rootfs/mnt /rootfs/run /rootfs/tmp /rootfs/dev /rootfs/var /rootfs/etc && mknod /rootfs/dev/null c 1 3 && chmod 666 /rootfs/dev/null
-RUN mkdir /out/ && mkisofs -l -J -R -o /out/rootfs.bin /rootfs/
+RUN mkdir /out/ && mkisofs -joliet-long -l -J -R -o /out/rootfs.bin /rootfs/
 # RUN isoinfo -i /out/rootfs.bin -l
 
 FROM ubuntu:22.04 AS bochs-config-dev
